@@ -1,15 +1,25 @@
-const { Guest } = require("../../models");
-const { authMiddleware, signToken } = require("../../utils/auth");
+const { Party, Guest } = require("../../models");
+const { authMiddleware} = require("../../utils/auth");
 const router = require('express').Router();
 
-router.get("/:id/:party",authMiddleware, async (req, res) =>{
+router.post("/",authMiddleware, async (req, res) =>{
     try {
-        res.status(200).json({message:rec.params.id,message2:rec.params.party})
-    }
-    catch(err) {
-        console.log(err);
-        res.status(400).json({ message: "an error occured", err: err });
-    }
-});
+        const partyData = await Guest.create({
+            weddingId: req.body.weddingId,
+            guestName: req.body.guestName,
+            meal: req.body.meal,
+            seat: req.body.seat,
+            street1: req.body.street1,
+            street2: req.body.street2,
+            city: req.body.city,
+            state: req.body.state,
+            zipcode: req.body.zipcode,
+            country: req.body.country,
+        })
+            res.status(200).json(partyData)
+        }catch(err) {
+            res.status(500).json({message: "error error error", err: err})
+        }
+    })
 
 module.exports = router
