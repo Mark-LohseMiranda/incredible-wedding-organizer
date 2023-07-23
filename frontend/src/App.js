@@ -31,6 +31,8 @@ export default function App() {
   const [weddingId, setWeddingId] = useState();
   const [guestId, setGuestId] = useState();
   const [guests, setGuests] = useState();
+  const [gifts, setGifts] = useState();
+  const [giftId, setGiftId] = useState();
 
   return (
     <div className="dark:bg-gray-700">
@@ -101,6 +103,7 @@ export default function App() {
                 setWeddings={setWeddings}
               />
             }
+          
           />
         </Routes>
         {/* <div className="py-10 px-5 md:p-10 h-screen bg-yellow-100 dark:bg-slate-800">
